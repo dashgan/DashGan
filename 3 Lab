@@ -1,0 +1,23 @@
+import networkx as nx
+from decimal import *
+#Количество вершин
+n = 18
+#Вероятность появления случайного ребра
+p = 0.3
+#Генерируем граф
+G = nx.erdos_renyi_graph(n,p)
+#Рассчитаем среднюю степень вершин
+a = 0
+for n in G.nodes():
+    a = a + G.degree(n)
+#Рассчитаем фактическую среднюю степень
+average = Decimal(float(a)/len(G.nodes()))
+#Рассчитаем среднюю степень по формуле
+formula = Decimal((n-1)*p)
+#Найдем разность значений
+diff = Decimal(formula - average)
+
+#Выведем на печать полученные значения:
+print('Фактическая средняя степень:', average.quantize(Decimal('1.000')))
+print('Средняя степень по формуле:', formula.quantize(Decimal('1.000')))
+print('Разность:', diff.quantize(Decimal('1.000')))
