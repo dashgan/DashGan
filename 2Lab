@@ -1,0 +1,22 @@
+import networkx as nx
+import numpy
+import scipy
+
+#Создадим граф из семи узлов
+G = nx.Graph()
+G.add_nodes_from(range(7))
+#Добавим ребра
+G.add_edge(0, 1)
+G.add_edge(1, 2)
+G.add_edge(2, 3)
+G.add_edge(3, 4)
+G.add_edge(4, 5)
+G.add_edge(4, 6)
+G.add_edge(2, 5)
+G.add_edge(3, 6)
+
+#Найдем центральности:
+centrality = nx.eigenvector_centrality_numpy(G)
+
+for node, value in centrality.items():
+  print('Центральность узла', node, 'равна', value)
